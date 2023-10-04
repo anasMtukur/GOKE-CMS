@@ -31,7 +31,7 @@ public class ClientFileController  extends BaseController {
     private static final int MAX_FILE_SIZE     = 1024 * 1024 * 1000; // 400MB
     private static final int MAX_REQUEST_SIZE  = 1024 * 1024 * 1200; // 500MB
     //private static final String UPLOAD_PATH    = "/home/ebahn/goke";
-    private static final String UPLOAD_PATH    = "/home/anas/CMS";
+    private static final String UPLOAD_PATH    = "/home/anas/CMS/uploads";
 
     
 	private ClientFileRepository repository;

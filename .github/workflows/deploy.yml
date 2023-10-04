@@ -1,0 +1,38 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Install SSH Client
+      run: |
+        sudo apt-get update
+        sudo apt-get install openssh-client
+
+    - name: Connect to Server and Deploy
+      run: |
+        sshpass -p "qwertyQAZ12345!" ssh -o StrictHostKeyChecking=no anas@78.110.169.252 '
+          git clone https://github.com/anasMtukur/GOKE-CMS.git &&
+          cd GOKE-CMS &&
+          git checkout master &&
+          mvn clean install &&
+          cp target/*.war ~/CMS/GOKE-CMS.war &&
+          rm -rf ~/GOKE-CMS &&
+          kill -9 $(lsof -t -i:9191) 2>/dev/null || true &&
+          cd ~/CMS &&
+          ./run.sh &
+        '
+
+    - name: Cleanup
+      run: |
+        sudo apt-get remove -y openssh-client
+
