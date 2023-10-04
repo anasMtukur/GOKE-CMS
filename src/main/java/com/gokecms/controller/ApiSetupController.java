@@ -77,7 +77,7 @@ public class ApiSetupController extends BaseController {
 
     private void delete(HttpServletRequest request, HttpServletResponse response)
     		throws SQLException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id = Integer.parseInt(request.getParameter("reference"));
         repository.delete(id);
         response.sendRedirect("/api-setup-doc");
     }
