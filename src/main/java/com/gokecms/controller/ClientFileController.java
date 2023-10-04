@@ -150,7 +150,9 @@ public class ClientFileController  extends BaseController {
                 		if( operation.equalsIgnoreCase( "update" ) && exSource != "" ) {
                 			try{
 	                    		File f = new File( exSource );
-	                    		f.delete();
+	                    		if( f.exists() ) {
+	                    			f.delete();
+	                    		}
                     		}catch (Exception e) {
                     			e.printStackTrace();
                     		}
