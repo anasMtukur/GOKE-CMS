@@ -143,4 +143,8 @@
             <error-on-undeclared-namespace>true</error-on-undeclared-namespace>
         </jsp-property-group>
     </jsp-config>
+    
+    <listener>
+		<listener-class>com.gokecms.listeners.ListenersRunner</listener-class>
+	</listener>
 </web-app>
