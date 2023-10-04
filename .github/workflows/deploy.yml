@@ -20,7 +20,7 @@ jobs:
 
     - name: Connect to Server and Deploy
       run: |
-        sshpass -p "qwertyQAZ12345!" ssh -o StrictHostKeyChecking=no anas@78.110.169.252 '
+        sshpass -p "qwertyQAZ12345!" ssh -v -o StrictHostKeyChecking=no anas@78.110.169.252 '
           git clone https://github.com/anasMtukur/GOKE-CMS.git &&
           cd GOKE-CMS &&
           git checkout master &&
