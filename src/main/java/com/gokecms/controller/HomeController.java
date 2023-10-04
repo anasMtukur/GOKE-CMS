@@ -123,16 +123,18 @@ public class HomeController extends BaseController {
         
         String clientDir = UPLOAD_PATH + File.separator + id + File.separator;
         Path dir = Paths.get( clientDir ); //path to the directory  
-        Files
-            .walk(dir) // Traverse the file tree in depth-first order
-            .sorted(Comparator.reverseOrder())
-            .forEach(path -> {
-                try {
-                    Files.delete(path);  //delete each file or directory
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
+        if( dir.toFile().exists() ) {
+	        Files
+	            .walk(dir) // Traverse the file tree in depth-first order
+	            .sorted(Comparator.reverseOrder())
+	            .forEach(path -> {
+	                try {
+	                    Files.delete(path);  //delete each file or directory
+	                } catch (IOException e) {
+	                    e.printStackTrace();
+	                }
+	            });
+        }
         
         List < ClientFile > files = docRepository.find( "client", String.valueOf( id ) );
         for( ClientFile doc: files ) {
