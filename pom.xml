@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.gokecms</groupId>
+    <artifactId>GOKE-CMS</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>war</packaging>
+    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+    </properties>
+
+    <dependencies>
+		<!-- https://mvnrepository.com/artifact/org.antlr/antlr4 -->
+		<dependency>
+		    <groupId>org.antlr</groupId>
+		    <artifactId>antlr4</artifactId>
+		    <version>4.13.1</version>
+		</dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-servlet-api</artifactId>
+            <version>9.0.20</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-jsp-api</artifactId>
+            <version>9.0.20</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.taglibs</groupId>
+            <artifactId>taglibs-standard-spec</artifactId>
+            <version>1.2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.taglibs</groupId>
+            <artifactId>taglibs-standard-impl</artifactId>
+            <version>1.2.5</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/javax.servlet.jsp/javax.servlet.jsp-api -->
+		<dependency>
+		    <groupId>javax.servlet.jsp</groupId>
+		    <artifactId>javax.servlet.jsp-api</artifactId>
+		    <version>2.3.3</version>
+		    <scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>javax.servlet.jsp.jstl</groupId>
+		    <artifactId>javax.servlet.jsp.jstl-api</artifactId>
+		    <version>1.2.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
+		<dependency>
+		    <groupId>com.mysql</groupId>
+		    <artifactId>mysql-connector-j</artifactId>
+		    <version>8.1.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+		    <groupId>org.projectlombok</groupId>
+		    <artifactId>lombok</artifactId>
+		    <version>1.18.28</version>
+		    <scope>provided</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.google.gson/gson -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.10.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy -->
+		<dependency>
+		    <groupId>net.bytebuddy</groupId>
+		    <artifactId>byte-buddy</artifactId>
+		    <version>1.14.8</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.fasterxml/classmate -->
+		<dependency>
+		    <groupId>com.fasterxml</groupId>
+		    <artifactId>classmate</artifactId>
+		    <version>1.5.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.dom4j/dom4j -->
+		<dependency>
+		    <groupId>org.dom4j</groupId>
+		    <artifactId>dom4j</artifactId>
+		    <version>2.1.4</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.hibernate.common/hibernate-commons-annotations -->
+		<dependency>
+		    <groupId>org.hibernate.common</groupId>
+		    <artifactId>hibernate-commons-annotations</artifactId>
+		    <version>6.0.6.Final</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-core -->
+		<dependency>
+		    <groupId>org.hibernate.orm</groupId>
+		    <artifactId>hibernate-core</artifactId>
+		    <version>6.3.1.Final</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.javassist/javassist -->
+		<dependency>
+		    <groupId>org.javassist</groupId>
+		    <artifactId>javassist</artifactId>
+		    <version>3.29.2-GA</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/javax.activation/javax.activation-api -->
+		<dependency>
+		    <groupId>javax.activation</groupId>
+		    <artifactId>javax.activation-api</artifactId>
+		    <version>1.2.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
+		<dependency>
+		    <groupId>jakarta.servlet</groupId>
+		    <artifactId>jakarta.servlet-api</artifactId>
+		    <version>6.0.0</version>
+		    <scope>provided</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api -->
+		<dependency>
+		    <groupId>javax.persistence</groupId>
+		    <artifactId>javax.persistence-api</artifactId>
+		    <version>2.2</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java -->
+		<dependency>
+		    <groupId>com.google.protobuf</groupId>
+		    <artifactId>protobuf-java</artifactId>
+		    <version>3.24.3</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+		<dependency>
+		    <groupId>commons-fileupload</groupId>
+		    <artifactId>commons-fileupload</artifactId>
+		    <version>1.5</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-lang3</artifactId>
+		    <version>3.13.0</version>
+		</dependency>
+    </dependencies>
+    
+    <build>
+	    <plugins>
+			<plugin>
+			    <artifactId>maven-compiler-plugin</artifactId>
+			    <version>3.8.1</version>
+			    <configuration>
+			      <release>11</release>
+			    </configuration>
+			</plugin>
+			<plugin>
+			    <artifactId>maven-war-plugin</artifactId>
+			    <version>3.2.3</version>
+			</plugin>
+			<plugin>
+		      	<groupId>org.eclipse.jetty</groupId>
+		      	<artifactId>jetty-maven-plugin</artifactId>
+		      	<version>9.4.28.v20200408</version>
+		      	<configuration>
+		          	<httpConnector>
+						<host>0.0.0.0</host>
+		            	<port>1212</port>
+		          	</httpConnector>
+		          	<!-- scans your project for any changes to hot swap it to server -->
+		          	<scanIntervalSeconds>5</scanIntervalSeconds>
+		      	</configuration>
+    		</plugin>
+	    </plugins>
+	</build>
+    
+    <!--<build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>3.1.0</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.0.2</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.1</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.22.2</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>3.2.2</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>2.5.2</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>2.8.2</version>
+                </plugin>
+                <plugin>
+			      	<groupId>org.eclipse.jetty</groupId>
+			      	<artifactId>jetty-maven-plugin</artifactId>
+			      	<version>9.4.28.v20200408</version>
+			      	<configuration>
+			          	<httpConnector>
+							<host>0.0.0.0</host>
+			            	<port>1313</port>
+			          	</httpConnector>
+			          	 scans your project for any changes to hot swap it to server 
+			          	<scanIntervalSeconds>5</scanIntervalSeconds>
+			      	</configuration>
+    			</plugin>
+            </plugins>
+        </pluginManagement>
+    </build>-->
+</project>
