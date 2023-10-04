@@ -18,7 +18,7 @@ public class DottedIService {
 	private static String SYSTEM_STATUS_NAME = "GOKE-CMS";
 	private static String STATUS_FILE_PATH   = "/home/anas/CMS/status.json";
 	private static String SERVICE_STATUS_URL = "https://script.google.com/macros/s/AKfycbxMNfb73trZM7h8rX2aZLe2yczQWAzcM1O9ZU4_Ts3iquVbr1LbREARHjd7K-QtXoK_/exec";
-	private final int minutes                = 1;
+	private final int minutes                = 360;
 	private final Timer timer                = new Timer();
     
     public DottedIService() {
