@@ -6,7 +6,7 @@
     <div class="section__content section__content--p35">
         <div class="header3-wrap">
             <div class="header__logo">
-                <a href="#">
+                <a href="/home">
                     <img src="/images/icon/logo--white.png" class="logo" alt="Goke CMS" />
                 </a>
             </div>
@@ -67,7 +67,7 @@
                             </div>
                             <div class="account-dropdown__body">
                                 <div class="account-dropdown__item">
-                                    <a href="#">
+                                    <a href="/account">
                                         <i class="zmdi zmdi-account"></i>Account</a>
                                 </div>
                             </div>

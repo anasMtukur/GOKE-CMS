@@ -145,9 +145,9 @@
 	                             	 <label for="company" class=" form-control-label">Password</label>
 	                                 <div class="input-group">
 	                                     <input type="password" autocomplete="new-password" name="password" placeholder="Password" class="form-control">
-	                                     <div class="input-group-btn">
+	                                     <!-- <div class="input-group-btn">
 	                                         <button class="btn btn-primary">Generate</button>
-	                                     </div>
+	                                     </div> -->
 	                                 </div>
 	                                 <small>Use a strong password and keep it safe. You wont be able to view this password again.</small>
 	                             </div>
@@ -188,9 +188,9 @@
 	                             	 <label for="password" class=" form-control-label">Password</label>
 	                                 <div class="input-group">
 	                                     <input type="password" id="password" name="password" autocomplete="new-password" placeholder="Password" class="form-control">
-	                                     <div class="input-group-btn">
+	                                     <!-- <div class="input-group-btn">
 	                                         <button class="btn btn-primary">Generate</button>
-	                                     </div>
+	                                     </div> -->
 	                                 </div>
 	                                 <small>Use a strong password and keep it safe. You wont be able to view this password again.</small>
 	                             </div>

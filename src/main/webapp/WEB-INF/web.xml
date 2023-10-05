@@ -134,6 +134,20 @@
 	  <url-pattern>/api/v1/*</url-pattern>
 	</filter-mapping>
 	
+	<servlet>
+		<servlet-name>UserAccountController</servlet-name>
+		<servlet-class>com.gokecms.controller.UserAccountController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	   <servlet-name>UserAccountController</servlet-name>
+	   <url-pattern>/account</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+	   <servlet-name>UserAccountController</servlet-name>
+	   <url-pattern>/account/update</url-pattern>
+	</servlet-mapping>
+	
     <jsp-config>
         <jsp-property-group>
             <url-pattern>*.jsp</url-pattern>

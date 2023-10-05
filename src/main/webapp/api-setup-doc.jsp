@@ -87,7 +87,7 @@
 							                                
 							                                <div class="au-card recent-report">
 							                                    <div class="au-card-inner">
-							                                        <h4 class="pb-6 display-5">Endpoint: <mark>/clients</mark></h4>
+							                                        <h4 class="pb-2 display-5">Endpoint: <mark>/clients</mark></h4>
 							                                        <div class="chart-info">
 							                                            <p>List of all clients</p>
 							                                        </div>
@@ -101,7 +101,7 @@
 							                                
 							                                <div class="au-card recent-report">
 							                                    <div class="au-card-inner">
-							                                        <h4 class="pb-6 display-5">Endpoint: <mark>/clients/<i>{ClientId}</i></mark></h4>
+							                                        <h4 class="pb-2 display-5">Endpoint: <mark>/clients/<i>{ClientId}</i></mark></h4>
 							                                        <div class="chart-info">
 							                                            <p>Details of client with given ID</p>
 							                                        </div>
@@ -113,9 +113,9 @@
 							                                
 							                                <div class="au-card recent-report">
 							                                    <div class="au-card-inner">
-							                                        <h4 class="pb-6 display-5">Endpoint: <mark>/clients/<i>{ClientId}</i>/files</mark></h4>
+							                                        <h4 class="pb-2 display-5">Endpoint: <mark>/clients/<i>{ClientId}</i>/files</mark></h4>
 							                                        <div class="chart-info">
-							                                            <p>Details of client with given ID</p>
+							                                            <p>Details and files of client with given ID</p>
 							                                        </div>
 							                                        <div class="recent-report__chart">
 							                                            <pre>{"client":{"id":1,"name":"Anas M Tukur","number":"CL0001","createdAt":"Sep 26, 2023, 2:15:26 PM","updatedAt":"Sep 26, 2023, 2:15:26 PM"},"documents":[{"title":"Nepa Bill","source":"http://localhost:1212/client-file/download-single?reference\u003d1","createdAt":"Sep 26, 2023, 2:15:44 PM","updatedAt":"Sep 26, 2023, 2:15:44 PM"},{"title":"Certificate","source":"http://localhost:1212/client-file/download-single?reference\u003d2","createdAt":"Sep 26, 2023, 2:15:55 PM","updatedAt":"Sep 26, 2023, 2:15:55 PM"},{"title":"Water Bill","source":"http://localhost:1212/client-file/download-single?reference\u003d3","createdAt":"Sep 26, 2023, 2:16:26 PM","updatedAt":"Sep 26, 2023, 2:16:26 PM"}]}</pre>
@@ -152,12 +152,12 @@
 							                                            <tr>
 							                                                <td>
 							                                                	<div class="d-flex justify-content-between align-items-center">
-							                                                		<h6>
+							                                                		<h6 id='<c:out value="${item.id}" />'>
 							                                                			<c:out value="${item.token}" />
 							                                                		</h6>
 							                                                		
 							                                                		<span>
-							                                                			<button class="btn btn-link"> <i class="fa fa-copy"></i> </button>
+							                                                			<button onclick="copy_data('<c:out value="${item.id}" />')" class="btn btn-link"> <i class="fa fa-copy"></i> </button>
 							                                                		</span>
 							                                                	</div>
 							                                                </td>
@@ -202,7 +202,16 @@
 	</div>
 
 	<%@include file="fragment-footer-tags.jsp" %>
-
+	<script>
+		function copy_data(containerid) {
+			  var range = document.createRange();
+			  range.selectNode( document.getElementById( containerid ) ); //changed here
+			  window.getSelection().removeAllRanges(); 
+			  window.getSelection().addRange(range); 
+			  document.execCommand("copy");
+			  window.getSelection().removeAllRanges();
+		}
+	</script>
 </body>
 
 </html>
