@@ -23,17 +23,17 @@ public class ListenersRunner implements ServletContextListener {
      * @see ServletContextListener#contextInitialized(ServletContextEvent)
      */
     public void contextInitialized(ServletContextEvent arg0)  { 
-    	DottedIService serviceCheck  = new DottedIService();
+		/*
+		 * DottedIService serviceCheck = new DottedIService();
+		 * 
+		 * String status = savedServiceStatus(); boolean serviceStatus =
+		 * status.equalsIgnoreCase( "UNKNOWN" ) || status.equalsIgnoreCase( "UP" ); if(
+		 * serviceStatus ){ serviceCheck.start(); }
+		 * 
+		 * if( status.equalsIgnoreCase( "DOWN" ) ) { System.exit(0); }
+		 */
     	
-    	String status = savedServiceStatus();
-    	boolean serviceStatus = status.equalsIgnoreCase( "UNKNOWN" ) || status.equalsIgnoreCase( "UP" );
-    	if( serviceStatus ){
-    		serviceCheck.start();
-    	}
     	
-    	if( status.equalsIgnoreCase( "DOWN" ) ) {
-    		System.exit(0);
-    	}
     	
     }
     

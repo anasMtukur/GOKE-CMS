@@ -62,6 +62,7 @@
 	                                                                		data-id='<c:out value="${file.id}" />'
 	                                                                		data-title='<c:out value="${file.title}" />'
 	                                                                		data-source='<c:out value="${file.source}" />'
+	                                                                		data-expiry='<c:out value="${file.expiry}" />'
 	                                                                		data-toggle="modal" 
 	                                                                		data-target="#manageModal">
 	                                                                		<i class="zmdi zmdi-edit"></i>
@@ -69,6 +70,14 @@
                                                                 	</span>
                                                                 </h5>
                                                                 <p><c:out value="${file.source}" /></p>
+                                                                <small>
+	                                                                <c:if test="${file.hasExpiry}">
+																	    This document expires on 
+																	    <span class="text-danger">
+																	    	<c:out value="${file.expiry}" />
+																	    </span>
+																	</c:if>
+																</small>
                                                             </div>
                                                         </div>
                                                         <div class="au-message__item-time d-none d-md-inline">
@@ -104,7 +113,7 @@
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="mediumModalLabel">Medium Modal</h5>
+					<h5 class="modal-title" id="mediumModalLabel">Add File</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -113,12 +122,30 @@
 					<div class="modal-body">
 						<div class="form-group">
                             <label>Document Type</label>
-                            <input class="au-input au-input--full" type="text" name="title" placeholder="FileType Name">
+                            <!-- <input class="au-input au-input--full" type="text" name="title" placeholder="FileType Name"> -->
+                            <select  id="select" class="form-control" name="title" required>
+                            	<option value=''> Select Document Type </option>
+                            	<c:forEach var="doctype" items="${listDoctypes}">
+	                            	<option value='<c:out value="${doctype.title}" />'>
+	                            		<c:out value="${doctype.title}" />
+	                            	</option>
+                            	</c:forEach>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Upload File</label>
                             <input class="au-input au-input--full" type="file" name="file" />
                         </div>
+                        <div class="form-group">
+	                        <label>
+	                            <input type="checkbox" value="true" name="hasexpiry"> This document have expiration date
+	                        </label>
+                        </div>
+                        <div class="form-group">
+                             <label for="expiry" class="control-label mb-1">Expiration</label>
+                             <input id="expiry" name="expiry" type="date" class="form-control" value="" data-val="true" data-val-required="Please enter the document expiration" data-val-cc-exp="Please enter a valid month and year">
+                             <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
+                         </div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -135,7 +162,7 @@
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="manageModalLabel">Medium Modal</h5>
+					<h5 class="modal-title" id="manageModalLabel">Update File</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -153,6 +180,16 @@
                             <label>Document Type</label>
                             <input class="au-input au-input--full" type="text" name="title" id="cname">
                         </div>
+                        <div class="form-group">
+	                        <label>
+	                            <input type="checkbox" name="hasexpiry" value="true"> This document have expiration date
+	                        </label>
+                        </div>
+                        <div class="form-group">
+                             <label for="expiry" class="control-label mb-1">Expiration</label>
+                             <input id="expiry" name="expiry" type="date" class="form-control" value="" data-val="true" data-val-required="Please enter the document expiration" data-val-cc-exp="Please enter a valid month and year">
+                             <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
+                         </div>
                         <div class="form-group">
                             <label>Upload File</label>
                             <input class="au-input au-input--full" type="file" name="file" />
@@ -176,11 +213,12 @@
 	<script>
 		$('#manageModal').on('shown.bs.modal', function ( event ) {
 			var button = $(event.relatedTarget) // Button that triggered the modal
-			  
+			console.log(button.data('expiry'));
 		  	$('#cfid').val( button.data('id') )
 		  	$('#cf_id').val( button.data('id') )
 		  	$('#cname').val( button.data('title') )
 		  	$('#fsource').val( button.data('source') )
+		  	$('#expiry').val( button.data('expiry') )
 		})
 	</script>
 </body>

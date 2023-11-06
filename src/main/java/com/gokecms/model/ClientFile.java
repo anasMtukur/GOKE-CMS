@@ -31,6 +31,12 @@ public class ClientFile {
  
     @Column(name="source")
     protected String source;
+
+	@Column(name="expiry")
+    protected Date expiry;
+
+	@Column(name="has_expiry")
+    protected boolean hasExpiry;
     
     @Column(name="created_at")
     @Basic
@@ -46,17 +52,27 @@ public class ClientFile {
     
     public ClientFile() {}
     
+    public ClientFile(int client, String title, String source, Date expiry, boolean hasExpiry) {
+    	this.client = client;
+    	this.title = title;
+    	this.source = source;
+    	this.expiry = expiry;
+    	this.hasExpiry = hasExpiry;
+    }
+    
     public ClientFile(int client, String title, String source) {
     	this.client = client;
     	this.title = title;
     	this.source = source;
     }
     
-    public ClientFile(int id, int client, String title, String source) {
+    public ClientFile(int id, int client, String title, String source, Date expiry, boolean hasExpiry) {
     	this.id = id;
     	this.client = client;
     	this.title = title;
     	this.source = source;
+    	this.expiry = expiry;
+    	this.hasExpiry = hasExpiry;
     }
 
 	public int getId() {
@@ -89,6 +105,22 @@ public class ClientFile {
 
 	public void setSource(String source) {
 		this.source = source;
+	}
+
+	public Date getExpiry() {
+		return expiry;
+	}
+
+	public void setExpiry(Date expiry) {
+		this.expiry = expiry;
+	}
+
+	public boolean isHasExpiry() {
+		return hasExpiry;
+	}
+
+	public void setHasExpiry(boolean hasExpiry) {
+		this.hasExpiry = hasExpiry;
 	}
 
 	public Date getCreatedAt() {

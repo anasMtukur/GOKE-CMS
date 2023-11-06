@@ -25,7 +25,7 @@
                                     <div class="au-card-title" style="background-image:url('images/bg-title-01.jpg');">
                                         <div class="bg-overlay bg-overlay--blue"></div>
                                         <h3>
-                                            <i class="zmdi zmdi-account-calendar"></i>Client KYC Archiving System</h3>
+                                            <i class="zmdi zmdi-account-calendar"></i>Client Management System</h3>
                                         <button class="au-btn-plus" data-toggle="modal" data-target="#mediumModal">
                                             <i class="zmdi zmdi-plus"></i>
                                         </button>
@@ -36,43 +36,37 @@
                                                 <p>
                                                 	Total Clients: 
                                                     <strong>
-                                                    	<c:out value="${listClients.size()}" />
+                                                    	<c:out value="${listDoctypes.size()}" />
                                                     </strong>
                                                 </p>
                                             </div>
                                             <div class="au-message-list">
                                             
-                                            	<c:forEach var="client" items="${listClients}">
+                                            	<c:forEach var="client" items="${listDoctypes}">
                                                 <div class="au-message__item-noclick">
                                                     <div class="au-message__item-inner">
                                                         <div class="au-message__item-text" style="min-width: 70%;">
                                                             <div class="avatar-wrap">
                                                                 <div class="avatar">
-                                                                    <img src="images/icon/client.png" alt='<c:out value="${client.name}" />'>
+                                                                    <img src="images/icon/file.png" alt='<c:out value="${client.title}" />'>
                                                                 </div>
                                                             </div>
                                                             <div class="text">
                                                                 <h5 class="name d-flex w-100 justify-content-between align-items-center">
-                                                                	<c:out value="${client.name}" />
-                                                                	<span>
-	                                                                	<a class="btn btn-link" 
-	                                                                		href='/client-file/<c:out value="${client.id}" />/'>
-	                                                                		<i class="zmdi zmdi-folder-person"></i>
-	                                                                	</a>
-	                                                                	
+                                                                	<c:out value="${client.title}" />
+                                                                	<span>	                                                                	
 	                                                                	<button 
 	                                                                		class="btn btn-link" 
 	                                                                		data-cid='<c:out value="${client.id}" />'
-	                                                                		data-cname='<c:out value="${client.name}" />'
-	                                                                		data-cnum='<c:out value="${client.number}" />'
-	                                                                		data-email='<c:out value="${client.email}" />'
+	                                                                		data-title='<c:out value="${client.title}" />'
+	                                                                		data-descr='<c:out value="${client.description}" />'
 	                                                                		data-toggle="modal" 
 	                                                                		data-target="#manageModal">
 	                                                                		<i class="zmdi zmdi-edit"></i>
 	                                                                	</button>
                                                                 	</span>
                                                                 </h5>
-                                                                <p><c:out value="${client.number}" /></p>
+                                                                <p><c:out value="${client.description}" /></p>
                                                             </div>
                                                         </div>
                                                         <div class="au-message__item-time d-none d-md-inline">
@@ -105,25 +99,20 @@
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="mediumModalLabel">Add New Client</h5>
+					<h5 class="modal-title" id="mediumModalLabel">Add Document Type</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form action="/client/add" method="post">
+				<form action="/doctype/add" method="post">
 					<div class="modal-body">
 						<div class="form-group">
-                            <label>Client Name</label>
-                            <input class="au-input au-input--full" type="text" name="name" placeholder="Client Name">
+                            <label>Document Type Title</label>
+                            <input class="au-input au-input--full" type="text" name="title" placeholder="Document Title">
                         </div>
                         <div class="form-group">
-                            <label>Client Number</label>
-                            <input class="au-input au-input--full" type="text" name="clientno" placeholder="Client Number e.g: CL0001">
-                        </div>
-                        <div class="form-group">
-                            <label>Client Email</label>
-                            <input class="au-input au-input--full" type="email" name="email" placeholder="Client Email e.g: client@test.com">
-                            <small>This email will be used to notify the merchant on expired documents</small>
+                            <label>Document Type Description</label>
+                            <textarea class="au-input au-input--full" rows="3" name="description" placeholder="Description of the document type"></textarea>
                         </div>
 					</div>
 					<div class="modal-footer">
@@ -141,36 +130,31 @@
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="manageModalLabel">Update Client</h5>
+					<h5 class="modal-title" id="manageModalLabel">Medium Modal</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form action="/client/update" method="post">
+				<form action="/doctype/update" method="post">
 					<div class="modal-body">
 						<div class="form-group">
                             <label>Client ID</label>
                             <input class="au-input au-input--full" type="text" name="id" id="cid" required readonly />
                         </div>
 						<div class="form-group">
-                            <label>Client Name</label>
-                            <input class="au-input au-input--full" type="text" name="name" id="cname" placeholder="Client Name">
+                            <label>Document Type Title</label>
+                            <input class="au-input au-input--full" type="text" id="title" name="title" placeholder="Document Title">
                         </div>
                         <div class="form-group">
-                            <label>Client Number</label>
-                            <input class="au-input au-input--full" type="text" name="clientno"  id="cnum" placeholder="Client Number e.g: CL0001">
-                        </div>
-                        <div class="form-group">
-                            <label>Client Email</label>
-                            <input class="au-input au-input--full" type="email" name="email" id="email" placeholder="Client Email e.g: client@test.com">
-                            <small>This email will be used to notify the merchant on expired documents</small>
+                            <label>Document Type Description</label>
+                            <textarea class="au-input au-input--full" rows="3" id="descr" name="description" placeholder="Description of the document type"></textarea>
                         </div>
                         
                         <button type="submit" name="submit" value="update" class="btn btn-block btn-primary">Update</button>
 					</div>
 				</form>
 				<div class="modal-footer">
-					<form action="/client/delete" method="post">
+					<form action="/doctype/delete" method="post">
 						<input class="au-input au-input--full" type="hidden" name="id" id="c_id" required readonly />
 						<button type="submit" class="btn btn-danger">Delete</button>
 					</form>
@@ -187,9 +171,8 @@
 			  
 		  	$('#cid').val( button.data('cid') )
 		  	$('#c_id').val( button.data('cid') )
-		  	$('#cname').val( button.data('cname') )
-		  	$('#cnum').val( button.data('cnum') )
-		  	$('#email').val( button.data('email') )
+		  	$('#title').val( button.data('title') )
+		  	$('#descr').val( button.data('descr') )
 		})
 	</script>
 </body>

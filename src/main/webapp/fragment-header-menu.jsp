@@ -19,13 +19,13 @@
                             Home
                         </a>
                     </li>
-                    <!-- <li>
-                        <a href="/document-types">
+                    <li>
+                        <a href="/doctype">
                             <i class="fa fa-files-o"></i>
                             <span class="bot-line"></span>
                             Document Types
                         </a>
-                    </li> -->
+                    </li>
                     <li>
                         <a href="/user">
                             <i class="fas fa-users"></i>

@@ -11,6 +11,7 @@ import org.hibernate.service.ServiceRegistry;
 import com.gokecms.model.ApiToken;
 import com.gokecms.model.Client;
 import com.gokecms.model.ClientFile;
+import com.gokecms.model.DocumentType;
 import com.gokecms.model.SystemUser;
 
 public class HibernateUtil {
@@ -29,7 +30,7 @@ public class HibernateUtil {
                  settings.put(Environment.PASS, "ebahn");
                  settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQLDialect");
 
-                 settings.put(Environment.SHOW_SQL, "false");
+                 settings.put(Environment.SHOW_SQL, "true");
 
                  settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
 
@@ -40,6 +41,7 @@ public class HibernateUtil {
                  configuration.addAnnotatedClass(Client.class);
                  configuration.addAnnotatedClass(ClientFile.class);
                  configuration.addAnnotatedClass(ApiToken.class);
+                 configuration.addAnnotatedClass(DocumentType.class);
 
                  ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                  .applySettings(configuration.getProperties()).build();

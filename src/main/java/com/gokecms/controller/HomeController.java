@@ -87,8 +87,9 @@ public class HomeController extends BaseController {
     	
     	String name = request.getParameter("name");
         String number = request.getParameter("clientno");
+        String email = request.getParameter("email");
 
-        Client entity = new Client( name, number );
+        Client entity = new Client( name, number, email );
         int clientId = repository.save( entity );
         
         File uploadDir = new File( UPLOAD_PATH + File.separator + clientId );
@@ -105,6 +106,7 @@ public class HomeController extends BaseController {
         int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         String number = request.getParameter("clientno");
+        String email = request.getParameter("email");
         
         Client entity = repository.get(id);
         if( entity == null ) {
@@ -113,6 +115,7 @@ public class HomeController extends BaseController {
         
         entity.setName(name);
         entity.setNumber(number);
+        entity.setEmail(email);
         repository.update( entity );
         response.sendRedirect("/client");
     }

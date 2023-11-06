@@ -16,21 +16,18 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
 @Entity
-@Table(name="clients")
-public class Client {
+@Table(name="document_types")
+public class DocumentType {
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id")
     protected int id;
  
-    @Column(name="name")
-    protected String name;
- 
-    @Column(name="number")
-    protected String number;
+    @Column(name="title")
+    protected String title;
     
-    @Column(name="email")
-    protected String email;
+    @Column(name="description")
+    protected String description;
     
     @Column(name="created_at")
     @Basic
@@ -44,19 +41,17 @@ public class Client {
     @UpdateTimestamp
     protected Date updatedAt;
     
-    public Client() {}
+    public DocumentType() {}
     
-    public Client(String name, String number, String email) {
-    	this.name = name;
-    	this.number = number;
-    	this.email = email;
+    public DocumentType(String title, String description) {
+    	this.title = title;
+    	this.description = description;
     }
     
-    public Client(int id, String name, String number, String email) {
+    public DocumentType(int id, String title, String description) {
     	this.id = id;
-    	this.name = name;
-    	this.number = number;
-    	this.email = email;
+    	this.title = title;
+    	this.description = description;
     }
 
 	public int getId() {
@@ -67,28 +62,20 @@ public class Client {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-	public String getNumber() {
-		return number;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setNumber(String number) {
-		this.number = number;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public Date getCreatedAt() {

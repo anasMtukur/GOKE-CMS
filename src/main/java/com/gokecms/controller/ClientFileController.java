@@ -6,7 +6,12 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -21,8 +26,10 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import com.gokecms.model.Client;
 import com.gokecms.model.ClientFile;
+import com.gokecms.model.DocumentType;
 import com.gokecms.repository.ClientFileRepository;
 import com.gokecms.repository.ClientRepository;
+import com.gokecms.repository.DocumentTypeRepository;
 
 public class ClientFileController  extends BaseController {
 	private static final long serialVersionUID = -4758388982229399144L;
@@ -30,16 +37,18 @@ public class ClientFileController  extends BaseController {
 	private static final int MEMORY_THRESHOLD  = 1024 * 1024 * 1000;  // 100MB
     private static final int MAX_FILE_SIZE     = 1024 * 1024 * 1000; // 400MB
     private static final int MAX_REQUEST_SIZE  = 1024 * 1024 * 1200; // 500MB
-    //private static final String UPLOAD_PATH    = "/home/ebahn/goke";
-    private static final String UPLOAD_PATH    = "/home/anas/CMS/uploads";
-
+    private static final String UPLOAD_PATH    = "/home/ebahn/goke";
+    //private static final String UPLOAD_PATH    = "/home/anas/CMS/uploads";
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     
 	private ClientFileRepository repository;
 	private ClientRepository clientRepository;
+	private DocumentTypeRepository doctypeRepository;
 	
 	public void init() {
     	repository = new ClientFileRepository();
     	clientRepository = new ClientRepository();
+    	doctypeRepository = new DocumentTypeRepository();
     }
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -86,7 +95,7 @@ public class ClientFileController  extends BaseController {
 				  		listClientFiles(request, response, client); 
 				  		break; 
 				} 
-			} catch (SQLException ex) {
+			} catch (SQLException | ParseException ex) {
 				throw new ServletException(ex); 
 			}
 			 
@@ -99,8 +108,10 @@ public class ClientFileController  extends BaseController {
     	int clientId = client.getId();
     	
     	List < ClientFile > files = repository.find( "client", String.valueOf( clientId ) );
+    	List<DocumentType> doctypes = doctypeRepository.getAll();
         request.setAttribute("clientInfo", client);
         request.setAttribute("listClientFiles", files);
+        request.setAttribute("listDoctypes", doctypes);
         
         RequestDispatcher dispatcher = request.getRequestDispatcher("/client-files.jsp");
         dispatcher.forward(request, response);
@@ -108,10 +119,10 @@ public class ClientFileController  extends BaseController {
     }
     
     private void insertOrUpdate(HttpServletRequest request, HttpServletResponse response, Client client) 
-    		throws SQLException, IOException, ServletException {
+    		throws SQLException, IOException, ServletException, ParseException {
     	int clientId = client.getId();
-    	String title="", source="", exSource="", docId="", operation="add";
-    	boolean fileProcessed = false;
+    	String title="", source="", exSource="", docId="", operation="add", expiry="2023-09-26";
+    	boolean fileProcessed = false, hasExpiry = false;
 
     	if (!ServletFileUpload.isMultipartContent(request)) {
     		request.setAttribute("error", "Form must be enctype multiform/form-data.");
@@ -140,6 +151,14 @@ public class ClientFileController  extends BaseController {
                 	    
                 	    if( name.equals("id") ) {
                 	    	docId = value;
+                	    }
+                	    
+                	    if( name.equals("hasexpiry") ) {
+                	    	hasExpiry = Boolean.parseBoolean( value );
+                	    }
+                	    
+                	    if( name.equals("expiry") ) {
+                	    	expiry = value;
                 	    }
                 	    
                 	    if( name.equals("operation") ) {
@@ -185,9 +204,12 @@ public class ClientFileController  extends BaseController {
             dispatcher.forward(request, response);
     	}
     	
+    	Date expDate = formatter.parse(expiry);
+    	System.out.println(expDate + " == " + hasExpiry);
+    	
     	if( operation.equalsIgnoreCase( "add" ) ) {
     	
-	        ClientFile entity = new ClientFile( clientId, title, source );
+	        ClientFile entity = new ClientFile( clientId, title, source, expDate, hasExpiry );
 	        repository.save( entity );
 	        
     	}
@@ -205,6 +227,8 @@ public class ClientFileController  extends BaseController {
     		
     		entity.setTitle( title );
     		entity.setSource( source );
+    		entity.setHasExpiry(hasExpiry);
+    		entity.setExpiry(expDate);
     		
     		repository.update( entity );
     	}

@@ -148,6 +148,28 @@
 	   <url-pattern>/account/update</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>DocumentTypeController</servlet-name>
+		<servlet-class>com.gokecms.controller.DocumentTypeController</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+	   <servlet-name>DocumentTypeController</servlet-name>
+	   <url-pattern>/doctype</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+	   <servlet-name>DocumentTypeController</servlet-name>
+	   <url-pattern>/doctype/add</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+	   <servlet-name>DocumentTypeController</servlet-name>
+	   <url-pattern>/doctype/update</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+	   <servlet-name>DocumentTypeController</servlet-name>
+	   <url-pattern>/doctype/delete</url-pattern>
+	</servlet-mapping>
+	
     <jsp-config>
         <jsp-property-group>
             <url-pattern>*.jsp</url-pattern>
