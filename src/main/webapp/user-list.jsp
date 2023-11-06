@@ -125,7 +125,7 @@
 				<form action="/user/add" method="post">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title" id="addModalLabel">Medium Modal</h5>
+							<h5 class="modal-title" id="addModalLabel">Add New User</h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
@@ -168,7 +168,7 @@
 					<input type="hidden" id="id" name="id" class="form-control">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title" id="editModalLabel">Medium Modal</h5>
+							<h5 class="modal-title" id="editModalLabel">Update User</h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>

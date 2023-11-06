@@ -25,7 +25,7 @@
                                     <div class="au-card-title" style="background-image:url('images/bg-title-01.jpg');">
                                         <div class="bg-overlay bg-overlay--blue"></div>
                                         <h3>
-                                            <i class="zmdi zmdi-account-calendar"></i>Client Management System</h3>
+                                            <i class="zmdi zmdi-account-calendar"></i>Client KYC Archiving System</h3>
                                         <button class="au-btn-plus" data-toggle="modal" data-target="#mediumModal">
                                             <i class="zmdi zmdi-plus"></i>
                                         </button>
@@ -45,7 +45,7 @@
                                             	<c:forEach var="client" items="${listDoctypes}">
                                                 <div class="au-message__item-noclick">
                                                     <div class="au-message__item-inner">
-                                                        <div class="au-message__item-text" style="min-width: 70%;">
+                                                        <div class="au-message__item-text" style="min-width: 70%; max-width: 70%;">
                                                             <div class="avatar-wrap">
                                                                 <div class="avatar">
                                                                     <img src="images/icon/file.png" alt='<c:out value="${client.title}" />'>

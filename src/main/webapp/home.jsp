@@ -45,7 +45,7 @@
                                             	<c:forEach var="client" items="${listClients}">
                                                 <div class="au-message__item-noclick">
                                                     <div class="au-message__item-inner">
-                                                        <div class="au-message__item-text" style="min-width: 70%;">
+                                                        <div class="au-message__item-text" style="min-width: 70%; max-width: 70%;">
                                                             <div class="avatar-wrap">
                                                                 <div class="avatar">
                                                                     <img src="images/icon/client.png" alt='<c:out value="${client.name}" />'>
