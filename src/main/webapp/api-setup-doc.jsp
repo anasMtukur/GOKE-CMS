@@ -20,12 +20,13 @@
 						<div class="row">
 							<div class="col-lg-3">
 								<div class="card">
-									<div class="card-header">
+									<!-- <div class="card-header">
 										<h4>Menu</h4>
-									</div>
+									</div> -->
 									<div class="card-body">
-										<p class="text-muted m-b-15">Pills can also be displayed vertically. Just add the
-											<code>.nav-stacked</code> class:</p>
+										<p class="text-muted m-b-15">
+											API Setup and documentation to allow creating new API keys and allow integration with other systems 
+										</p>
 
 										<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 											<a class="nav-item nav-link active" 
@@ -50,9 +51,9 @@
 							</div>
 							<div class="col-lg-9">
 								<div class="card">
-									<div class="card-header">
+									<!-- <div class="card-header">
 										<h4>Content</h4>
-									</div>
+									</div> -->
 									<div class="card-body">
 										<div class="default-tab">
 											
