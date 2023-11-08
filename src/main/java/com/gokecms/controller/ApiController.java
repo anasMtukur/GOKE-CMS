@@ -25,8 +25,7 @@ import com.google.gson.Gson;
 
 public class ApiController  extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private static final String UPLOAD_PATH    = "/home/ebahn/goke";
-    //private static final String UPLOAD_PATH    = "/home/anas/CMS/uploads";
+    private static final String UPLOAD_PATH    = "/home/anas/CMS/uploads";
     private ApiTokenRepository tokenRepository;
     private ClientRepository clientRepository;
     private ClientFileRepository cllientFileRepository;

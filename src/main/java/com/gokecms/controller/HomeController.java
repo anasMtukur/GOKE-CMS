@@ -25,8 +25,7 @@ import javax.servlet.RequestDispatcher;
 
 public class HomeController extends BaseController {
 	private static final long serialVersionUID = -4758388982229399144L;
-	private static final String UPLOAD_PATH    = "/home/ebahn/goke";
-	//private static final String UPLOAD_PATH    = "/home/anas/CMS/uploads";
+	private static final String UPLOAD_PATH    = "/home/anas/CMS/uploads";
 	private ClientRepository repository;
 	private ClientFileRepository docRepository;
 	
