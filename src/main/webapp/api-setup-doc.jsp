@@ -267,7 +267,7 @@
 												
 												<div class="tab-pane fade" id="nav-api" role="tabpanel" aria-labelledby="nav-api-tab">
 													<div class="overview-wrap">
-					                                    <h2 class="title-1">overview</h2>
+					                                    <h2 class="title-1">Manage API Access Token</h2>
 					                                    <a href="/api-setup-doc/add" class="au-btn au-btn-icon au-btn--blue">
 					                                        <i class="zmdi zmdi-plus"></i>Generate New Token</a>
 					                                </div>
