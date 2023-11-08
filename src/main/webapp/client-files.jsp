@@ -192,18 +192,20 @@
                          </div>
                         <div class="form-group">
                             <label>Upload File</label>
-                            <input class="au-input au-input--full" type="file" name="file" />
+                            <input class="au-input au-input--full" type="file" name="file" accept="" />
                         </div>
                         
                         <button type="submit" name="submit" value="update" class="btn btn-block btn-primary">Update</button>
 					</div>
 				</form>
+				<c:if test="${authUser.superAdmin}">
 				<div class="modal-footer">
 					<form action="delete" method="post">
 						<input class="au-input au-input--full" type="hidden" name="id" id="cf_id" required readonly />
 						<button type="submit" class="btn btn-danger">Delete</button>
 					</form>
 				</div>
+				</c:if>
 			</div>
 		</div>
 	</div>

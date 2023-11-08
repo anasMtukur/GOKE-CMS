@@ -26,7 +26,6 @@ public class ApiAuthenticationFilter implements Filter{
 	public void init(FilterConfig fConfig) throws ServletException {
 		this.context = fConfig.getServletContext();
 		tokenRepository = new ApiTokenRepository();
-		System.out.println("AuthenticationFilter initialized");
 	}
 	
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {

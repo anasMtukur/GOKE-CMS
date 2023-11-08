@@ -26,6 +26,7 @@
                             Document Types
                         </a>
                     </li>
+                    <c:if test="${authUser.superAdmin}">
                     <li>
                         <a href="/user">
                             <i class="fas fa-users"></i>
@@ -33,6 +34,7 @@
                             System Users
                         </a>
                     </li>
+                    </c:if>
                     <li>
                         <a href="/api-setup-doc">
                             <i class="fa fa-code"></i>

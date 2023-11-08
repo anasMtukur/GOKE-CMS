@@ -93,7 +93,24 @@
 							                                        </div>
 							                                        <div class="recent-report__chart">
 							                                        
-							                                        	<pre>[{"id":1,"name":"Anas M Tukur","number":"CL0001","createdAt":"Sep 26, 2023, 2:15:26 PM","updatedAt":"Sep 26, 2023, 2:15:26 PM"},{"id":2,"name":"Dalas County","number":"CL0002","createdAt":"Oct 3, 2023, 9:34:25 AM","updatedAt":"Oct 3, 2023, 9:34:25 AM"}]</pre>
+<pre>
+[
+	{
+		"id":1,
+		"name":"Anas M Tukur",
+		"number":"CL0001",
+		"createdAt":"Sep 26, 2023, 2:15:26 PM",
+		"updatedAt":"Sep 26, 2023, 2:15:26 PM"
+	},
+	{
+		"id":2,
+		"name":"Dalas County",
+		"number":"CL0002",
+		"createdAt":"Oct 3, 2023, 9:34:25 AM",
+		"updatedAt":"Oct 3, 2023, 9:34:25 AM"
+	}
+]
+</pre>
 							                                            
 							                                        </div>
 							                                    </div>
@@ -101,24 +118,145 @@
 							                                
 							                                <div class="au-card recent-report">
 							                                    <div class="au-card-inner">
-							                                        <h4 class="pb-2 display-5">Endpoint: <mark>/clients/<i>{ClientId}</i></mark></h4>
+							                                        <h4 class="pb-2 display-5">Endpoint: <mark>/add-client</mark></h4>
 							                                        <div class="chart-info">
-							                                            <p>Details of client with given ID</p>
+							                                            <p>
+							                                            	Add new client
+							                                            </p>
 							                                        </div>
 							                                        <div class="recent-report__chart">
-							                                            <pre>{"client":{"id":1,"name":"Anas M Tukur","number":"CL0001","createdAt":"Sep 26, 2023, 2:15:26 PM","updatedAt":"Sep 26, 2023, 2:15:26 PM"}}</pre>
+							                                        	<h5 class="mb-4">Request Body</h5>
+<pre>
+{
+	"name":"Anas M Tukur",
+	"number":"CL0001",
+	"email":"anas@mail.com"
+}
+</pre>
+							                                        </div>
+							                                        <div class="recent-report__chart">
+							                                        	<h5 class="mb-4">Response Body</h5>
+<pre>
+{
+	"id":1,
+	"name":"Anas M Tukur",
+	"number":"CL0001",
+	"email":"anas@mail.com",
+	"createdAt":"Sep 26, 2023, 2:15:26 PM",
+	"updatedAt":"Sep 26, 2023, 2:15:26 PM"
+}
+</pre>
 							                                        </div>
 							                                    </div>
 							                                </div>
 							                                
 							                                <div class="au-card recent-report">
 							                                    <div class="au-card-inner">
-							                                        <h4 class="pb-2 display-5">Endpoint: <mark>/clients/<i>{ClientId}</i>/files</mark></h4>
+							                                        <h4 class="pb-2 display-5">Endpoint: <mark>/clients/<i>{queryParameter}</i>/<i>{parameterValue}</i></mark></h4>
 							                                        <div class="chart-info">
-							                                            <p>Details and files of client with given ID</p>
+							                                            <p>
+							                                            	Details of client whose query parameter field matches query parameter value. 
+							                                            	<br /><br />Query Parameter can only be one of the following:
+								                                    	</p>
+							                                        </div>
+							                                        <div class="chart-info">
+							                                            <ul>
+							                                            	<li>
+							                                            		<b>id:</b>
+							                                            		ID of the client
+							                                            	</li>
+							                                            	<li>
+							                                            		<b>number:</b>
+							                                            		Client merchant number
+							                                            	</li>
+							                                            </ul>
+							                                        </div>
+							                                        
+							                                        <div class="chart-info">
+							                                            <p>
+							                                            	<strong>Example: </strong>
+							                                            	<i>http://78.110.169.252:9191/api/v1/clients/<b>id</b>/<b>1</b></i>
+							                                            </p>
+							                                        </div>
+							                                        
+							                                        <div class="recent-report__chart">
+<pre>
+{
+	"client":{
+		"id":1,
+		"name":"Anas M Tukur",
+		"number":"CL0001",
+		"email":"anas@mail.com",
+		"createdAt":"Sep 26, 2023, 2:15:26 PM",
+		"updatedAt":"Sep 26, 2023, 2:15:26 PM"
+	}
+}
+</pre>
+							                                        </div>
+							                                    </div>
+							                                </div>							                                
+							                                
+							                                <div class="au-card recent-report">
+							                                    <div class="au-card-inner">
+							                                        <h4 class="pb-2 display-5">Endpoint: <mark>/clients/<i>{queryParameter}</i>/<i>{parameterValue}</i>/files</mark></h4>
+							                                        <div class="chart-info">
+							                                            <p>
+							                                            	Details and files of client whose query parameter field matches query parameter value
+							                                            	<br /><br />Query Parameter can only be one of the following:
+							                                            </p>
+							                                        </div>
+							                                        <div class="chart-info">
+							                                            <ul>
+							                                            	<li>
+							                                            		<b>id:</b>
+							                                            		ID of the client
+							                                            	</li>
+							                                            	<li>
+							                                            		<b>number:</b>
+							                                            		Client merchant number
+							                                            	</li>
+							                                            </ul>
+							                                        </div>
+							                                        
+							                                        <div class="chart-info">
+							                                            <p>
+							                                            	<strong>Example: </strong>
+							                                            	<i>http://78.110.169.252:9191/api/v1/clients/<b>id</b>/<b>1</b>/files</i>
+							                                            </p>
 							                                        </div>
 							                                        <div class="recent-report__chart">
-							                                            <pre>{"client":{"id":1,"name":"Anas M Tukur","number":"CL0001","createdAt":"Sep 26, 2023, 2:15:26 PM","updatedAt":"Sep 26, 2023, 2:15:26 PM"},"documents":[{"title":"Nepa Bill","source":"http://localhost:1212/client-file/download-single?reference\u003d1","createdAt":"Sep 26, 2023, 2:15:44 PM","updatedAt":"Sep 26, 2023, 2:15:44 PM"},{"title":"Certificate","source":"http://localhost:1212/client-file/download-single?reference\u003d2","createdAt":"Sep 26, 2023, 2:15:55 PM","updatedAt":"Sep 26, 2023, 2:15:55 PM"},{"title":"Water Bill","source":"http://localhost:1212/client-file/download-single?reference\u003d3","createdAt":"Sep 26, 2023, 2:16:26 PM","updatedAt":"Sep 26, 2023, 2:16:26 PM"}]}</pre>
+<pre>
+{
+	"client":{
+		"id":1,
+		"name":"Anas M Tukur",
+		"number":"CL0001",
+		"email":"anas@mail.com",
+		"createdAt":"Sep 26, 2023, 2:15:26 PM",
+		"updatedAt":"Sep 26, 2023, 2:15:26 PM"
+	},
+	"documents":[
+		{
+			"title":"Nepa Bill",
+			"source":"http://localhost:1212/client-file/download-single?reference=1",
+			"createdAt":"Sep 26, 2023, 2:15:44 PM",
+			"updatedAt":"Sep 26, 2023, 2:15:44 PM"
+		},
+		{
+			"title":"Certificate",
+			"source":"http://localhost:1212/client-file/download-single?reference=2",
+			"createdAt":"Sep 26, 2023, 2:15:55 PM",
+			"updatedAt":"Sep 26, 2023, 2:15:55 PM"
+		},
+		{
+			"title":"Water Bill",
+			"source":"http://localhost:1212/client-file/download-single?reference\u003d3",
+			"createdAt":"Sep 26, 2023, 2:16:26 PM",
+			"updatedAt":"Sep 26, 2023, 2:16:26 PM"
+		}
+	]
+}
+</pre>
 							                                        </div>
 							                                    </div>
 							                                </div>

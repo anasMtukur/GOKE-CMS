@@ -41,6 +41,10 @@ public class SystemUser {
     @Convert(converter = NumericBooleanConverter.class)
     protected boolean isBlocked;
     
+    @Column(name="is_super_admin")
+    @Convert(converter = NumericBooleanConverter.class)
+    protected boolean isSuperAdmin;
+    
     @Column(name="created_at")
     @Basic
     @Temporal(TemporalType.TIMESTAMP)
@@ -56,7 +60,7 @@ public class SystemUser {
     public SystemUser() {
     }
  
-    public SystemUser(String name, String username, String password, boolean isBlocked) {
+    public SystemUser(String name, String username, String password, boolean isBlocked, boolean isSuperAdmin) {
         super();
         this.name = name;
         this.username = username;
@@ -64,7 +68,7 @@ public class SystemUser {
         this.isBlocked = isBlocked;
     }
 
-    public SystemUser(int id, String name, String username, String password, boolean isBlocked) {
+    public SystemUser(int id, String name, String username, String password, boolean isBlocked, boolean isSuperAdmin) {
         super();
         this.id = id;
         this.name = name;
@@ -111,6 +115,14 @@ public class SystemUser {
 
 	public void setBlocked(boolean isBlocked) {
 		this.isBlocked = isBlocked;
+	}
+
+	public boolean isSuperAdmin() {
+		return isSuperAdmin;
+	}
+
+	public void setSuperAdmin(boolean isSuperAdmin) {
+		this.isSuperAdmin = isSuperAdmin;
 	}
 
 	public Date getCreatedAt() {

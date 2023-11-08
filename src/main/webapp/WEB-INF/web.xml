@@ -34,6 +34,10 @@
 	   <servlet-name>UserController</servlet-name>
 	   <url-pattern>/user/delete</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+	   <servlet-name>UserController</servlet-name>
+	   <url-pattern>/user/toggle-block</url-pattern>
+	</servlet-mapping>
 	
 	<servlet>
 		<servlet-name>AuthController</servlet-name>
@@ -114,6 +118,10 @@
 	<servlet-mapping>
 	   <servlet-name>ApiController</servlet-name>
 	   <url-pattern>/api/v1/</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+	   <servlet-name>ApiController</servlet-name>
+	   <url-pattern>/api/v1/add-client</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 	   <servlet-name>ApiController</servlet-name>

@@ -44,7 +44,10 @@
                                                     </td> -->
                                                     <td>name</td>
                                                     <td>Blocked</td>
+                                                    <td>Role</td>
+                                                    <c:if test="${authUser.superAdmin}">
                                                     <td></td>
+                                                    </c:if>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -73,6 +76,15 @@
                                                         </c:if>
                                                     </td>
                                                     
+                                                    <td>
+                                                    	<c:if test="${user.superAdmin}">
+                                                        	<span class="role admin">Super User</span> 
+                                                        </c:if>
+                                                        <c:if test="${!user.superAdmin}"> 
+                                                        	<span class="role member">Limited User</span>  
+                                                        </c:if>
+                                                    </td>
+                                                    <c:if test="${authUser.superAdmin}">
                                                     <td class="text-right">
                                                         <div class="table-data-feature">
                                                         	<button class="item" 
@@ -81,26 +93,36 @@
                                                         		data-id='<c:out value="${user.id}" />'
                                                         		data-name='<c:out value="${user.name}" />'
                                                         		data-email='<c:out value="${user.username}" />'
+                                                        		data-super='<c:out value="${user.superAdmin}" />'
+                                                        		data-blocked='<c:out value="${user.blocked}" />'
                                                         		title="Edit">
 	                                                            <i class="zmdi zmdi-edit text-primary"></i>
 	                                                        </button>
 	                                                        
-	                                                        <c:if test="${user.blocked}">
-		                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Unblock">
-		                                                            <i class="zmdi zmdi-check text-danger"></i>
-		                                                        </button>
-	                                                        </c:if>
-	                                                        <c:if test="${!user.blocked}"> 
-		                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Block">
-		                                                            <i class="zmdi zmdi-block text-danger"></i>
-		                                                        </button>
-	                                                        </c:if>
 	                                                        
-	                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-	                                                            <i class="zmdi zmdi-delete text-danger"></i>
-	                                                        </button>
+                                                        	<form action="/user/toggle-block" method="post">
+	                                                        	<input type="hidden" name="id" value='<c:out value="${user.id}" />'>
+	                                                        	<c:if test="${user.blocked}">
+			                                                        <button name="submit" class="item m-r-1" data-toggle="tooltip" data-placement="top" title="Unblock">
+			                                                            <i class="zmdi zmdi-check text-danger"></i>
+			                                                        </button>
+		                                                        </c:if>
+		                                                        <c:if test="${!user.blocked}"> 
+			                                                        <button name="submit" class="item mr-1" data-toggle="tooltip" data-placement="top" title="Block">
+			                                                            <i class="zmdi zmdi-block text-danger"></i>
+			                                                        </button>
+		                                                        </c:if>
+		                                                    </form>
+	                                                        
+	                                                        <form action="/user/delete" method="post">
+	                                                        	<input type="hidden" name="id" value='<c:out value="${user.id}" />'>
+		                                                        <button type="submit" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+		                                                            <i class="zmdi zmdi-delete text-danger"></i>
+		                                                        </button>
+		                                                    </form>
 	                                                    </div>
                                                     </td>
+                                                    </c:if>
                                                 </tr>
                                                 </c:forEach>
                                                 
@@ -152,6 +174,11 @@
 	                                 <small>Use a strong password and keep it safe. You wont be able to view this password again.</small>
 	                             </div>
 	                         </div>
+	                         <div class="form-group">
+		                        <label>
+		                            <input type="checkbox" value="true" name="is_super"> Allow Super User Access
+		                        </label>
+	                    	 </div>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -195,6 +222,11 @@
 	                                 <small>Use a strong password and keep it safe. You wont be able to view this password again.</small>
 	                             </div>
 	                         </div>
+	                         <div class="form-group">
+		                        <label>
+		                            <input type="checkbox" value="true" name="is_super" id="is_super"> Allow Super User Access
+		                        </label>
+	                    	 </div>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -216,6 +248,8 @@
 		  	$('#id').val( button.data('id') )
 		  	$('#name').val( button.data('name') )
 		  	$('#email').val( button.data('email') )
+		  	console.log( button.data('super') )
+		  	$('#is_super').prop( "checked", button.data('super') );
 		})
 	</script>
 

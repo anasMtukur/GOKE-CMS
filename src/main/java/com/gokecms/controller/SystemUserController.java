@@ -45,6 +45,9 @@ public class SystemUserController extends BaseController {
 	                case "/user/update":
 	                    updateUser(request, response);
 	                    break;
+	                case "/user/toggle-block":
+	                    toggleBlockUser(request, response);
+	                    break;
 	                default:
 	                    listUser(request, response);
 	                    break;
@@ -85,8 +88,9 @@ public class SystemUserController extends BaseController {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         boolean blocked = request.getParameter("block") == null ? false : true;
+        boolean isSuper = request.getParameter("is_super") == null ? false : true;
 
-        SystemUser newUser = new SystemUser( name, email, password, blocked );
+        SystemUser newUser = new SystemUser( name, email, password, blocked, isSuper );
         newUser.setCreatedAt(new Date());
         
         repository.saveUser(newUser);
@@ -100,16 +104,33 @@ public class SystemUserController extends BaseController {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         boolean blocked = request.getParameter("block") == null ? false : true;
+        boolean isSuper = request.getParameter("is_super") == null ? false : true;
 
         System.out.println("Password: " + password);
         SystemUser user = repository.get(id);
         if(user != null) {
         	user.setName(name);
         	user.setUsername(email);
-        	if(password != null && password != "") {
+        	if(password != null && password != "" && password.length() > 3) {
         		user.setPassword(password);
         	}
         	user.setBlocked(blocked);
+        	user.setSuperAdmin(isSuper);
+        	
+        	repository.update(user);
+        }
+        
+        response.sendRedirect("/user");
+    }
+    
+    private void toggleBlockUser(HttpServletRequest request, HttpServletResponse response) 
+    		throws SQLException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        
+        SystemUser user = repository.get(id);
+        if(user != null) {
+        	
+        	user.setBlocked(!user.isBlocked());
         	
         	repository.update(user);
         }
