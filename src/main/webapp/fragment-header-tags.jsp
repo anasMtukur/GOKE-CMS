@@ -42,7 +42,7 @@
 		
 		.logo-mini {
 			width: 180px;
-			height: 72px;
+			height: 62px;
 		}
 		.logo {
 			height: 52px;
