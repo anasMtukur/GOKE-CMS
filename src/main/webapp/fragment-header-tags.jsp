@@ -9,7 +9,7 @@
 	<!-- Title Page-->
 	<title>Goke CMS</title>
 
-	<link rel="icon" type="image/png" href="/images/favicon.png">
+	<link rel="icon" type="image/png" href="/images/favicon.ico">
 	<!-- Fontfaces CSS-->
 	<link href="/css/font-face.css" rel="stylesheet" media="all">
 	<link href="/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
@@ -40,14 +40,15 @@
 			  transition: all 0.5s ease;
 		}
 		
-		.logo {
-			width: 52px;
-			height: 52px;
-		}
-		
 		.logo-mini {
-			width: 152px;
-			height: 152px;
+			width: 180px;
+			height: 72px;
+		}
+		.logo {
+			height: 52px;
+			background: white;
+			border-radius: 15px;
+			padding: 10px;
 		}
 		
 		.main-content {
