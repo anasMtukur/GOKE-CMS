@@ -14,7 +14,7 @@
                     <div class="login-content">
                         <div class="login-logo">
                             <a href="#">
-                                <img src="images/icon/logos.png" class="logo-mini" alt="CoolAdmin">
+                                <img src="images/icon/logo.png" class="logo-mini" alt="CoolAdmin">
                             </a>
                         </div>
                         <div class="login-form">
