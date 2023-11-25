@@ -26,7 +26,7 @@
                                 	
 	                                    <div class="col-5">
 	                                         <select name="q" id="select" class="form-control" required>
-	                                             <option value="0">Please select</option>
+	                                             <option value="">Please select category to switch</option>
 	                                             <c:forEach var="cat" items="${categories}">
 	                                             	<option value='<c:out value="${cat}" />'><c:out value="${cat}" /></option>
 	                                             </c:forEach>
