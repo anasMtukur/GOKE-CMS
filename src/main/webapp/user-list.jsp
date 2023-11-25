@@ -248,7 +248,6 @@
 		  	$('#id').val( button.data('id') )
 		  	$('#name').val( button.data('name') )
 		  	$('#email').val( button.data('email') )
-		  	console.log( button.data('super') )
 		  	$('#is_super').prop( "checked", button.data('super') );
 		})
 	</script>

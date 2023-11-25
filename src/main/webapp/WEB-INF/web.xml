@@ -60,20 +60,25 @@
 	   <servlet-name>HomeController</servlet-name>
 	   <url-pattern>/home</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ClientController</servlet-name>
+		<servlet-class>com.gokecms.controller.ClientController</servlet-class>
+	</servlet>
 	<servlet-mapping>
-	   <servlet-name>HomeController</servlet-name>
+	   <servlet-name>ClientController</servlet-name>
 	   <url-pattern>/client</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-	   <servlet-name>HomeController</servlet-name>
+	   <servlet-name>ClientController</servlet-name>
 	   <url-pattern>/client/add</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-	   <servlet-name>HomeController</servlet-name>
+	   <servlet-name>ClientController</servlet-name>
 	   <url-pattern>/client/update</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-	   <servlet-name>HomeController</servlet-name>
+	   <servlet-name>ClientController</servlet-name>
 	   <url-pattern>/client/delete</url-pattern>
 	</servlet-mapping>
 	

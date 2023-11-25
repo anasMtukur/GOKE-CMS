@@ -25,6 +25,9 @@ public class Client {
  
     @Column(name="name")
     protected String name;
+    
+    @Column(name="category")
+    protected String category;
  
     @Column(name="number")
     protected String number;
@@ -46,17 +49,19 @@ public class Client {
     
     public Client() {}
     
-    public Client(String name, String number, String email) {
+    public Client(String name, String number, String email, String category) {
     	this.name = name;
     	this.number = number;
     	this.email = email;
+    	this.category = category;
     }
     
-    public Client(int id, String name, String number, String email) {
+    public Client(int id, String name, String number, String email, String category) {
     	this.id = id;
     	this.name = name;
     	this.number = number;
     	this.email = email;
+    	this.category = category;
     }
 
 	public int getId() {
@@ -73,6 +78,14 @@ public class Client {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public String getNumber() {

@@ -164,4 +164,64 @@ public class ClientRepository {
         }
         return list;
     }
+    
+    /**
+     * Find count clients
+     * @return
+     */
+    @SuppressWarnings("unchecked")
+    public long count( ) {
+
+        Transaction transaction = null;
+        long count = 0;
+        try (Session session = HibernateUtil.getSessionFactory().getCurrentSession()) {
+            // start a transaction
+            transaction = session.beginTransaction();
+            // get an user object
+            
+            String jpql = "select count(*) from Client su";
+            
+            count = session.createQuery(jpql, Long.class).uniqueResult();
+
+            // commit transaction
+            transaction.commit();
+        } catch (Exception e) {
+			/*
+			 * if (transaction != null) { transaction.rollback(); }
+			 */
+            e.printStackTrace();
+        }
+        return count;
+    }
+    
+    /**
+     * Find count clients
+     * @return
+     */
+    @SuppressWarnings("unchecked")
+    public long countBy( String column, String value ) {
+
+        Transaction transaction = null;
+        long count = 0;
+        try (Session session = HibernateUtil.getSessionFactory().getCurrentSession()) {
+            // start a transaction
+            transaction = session.beginTransaction();
+            // get an user object
+            
+            String jpql = "select count(*) from Client su where su." + column + " =:" + column;
+            
+            count = session.createQuery(jpql, Long.class).setParameter(column, value).uniqueResult();
+
+            // commit transaction
+            transaction.commit();
+        } catch (Exception e) {
+			/*
+			 * if (transaction != null) { transaction.rollback(); }
+			 */
+            e.printStackTrace();
+        }
+        return count;
+    }
+    
+    
 }
