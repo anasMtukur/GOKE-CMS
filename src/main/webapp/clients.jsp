@@ -135,6 +135,7 @@
 				</div>
 				<form action="/client/add" method="post">
 					<input class="au-input au-input--full" type="hidden" name="q" value='<c:out value="${category}" />'>
+					<input class="au-input au-input--full" type="hidden" name="category" value='<c:out value="${category}" />'>
 					<div class="modal-body">
 						<div class="form-group">
                             <label>Client Name</label>
