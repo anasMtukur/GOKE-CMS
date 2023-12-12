@@ -107,7 +107,8 @@ public class ClientFileController  extends BaseController {
     	int clientId = client.getId();
     	
     	List < ClientFile > files = repository.find( "client", String.valueOf( clientId ) );
-    	List<DocumentType> doctypes = doctypeRepository.getAll();
+    	List<DocumentType> doctypes = doctypeRepository.find("category", client.getCategory());
+    			//.getAll();
         request.setAttribute("clientInfo", client);
         request.setAttribute("listClientFiles", files);
         request.setAttribute("listDoctypes", doctypes);

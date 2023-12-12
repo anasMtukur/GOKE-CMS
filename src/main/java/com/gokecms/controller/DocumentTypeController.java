@@ -2,6 +2,7 @@ package com.gokecms.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -9,12 +10,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.gokecms.app.Categories;
+import com.gokecms.app.CategoryName;
 import com.gokecms.model.DocumentType;
 import com.gokecms.repository.DocumentTypeRepository;
 
 public class DocumentTypeController extends BaseController {
 	private static final long serialVersionUID = -4758388982229399144L;
 	private DocumentTypeRepository repository;
+	private String finder = "MERCHANT";
 	
 	public void init() {
     	repository = new DocumentTypeRepository();
@@ -29,6 +33,9 @@ public class DocumentTypeController extends BaseController {
     		throws ServletException, IOException {
     	
     	if( isAuthenticated(request, response) ) {
+    		if(request.getParameter("q") != null) {
+        		finder = request.getParameter("q");
+        	}
     		
     		String action = request.getServletPath();
     		
@@ -59,8 +66,12 @@ public class DocumentTypeController extends BaseController {
     
     private void listAll(HttpServletRequest request, HttpServletResponse response)
     		throws SQLException, IOException, ServletException {
-        
-    	List < DocumentType > items = repository.getAll();
+    	List<CategoryName> categories = Arrays.asList( Categories.items );
+    	request.setAttribute("category", finder);
+    	request.setAttribute("categories", categories);
+    	
+    	List < DocumentType > items = repository.find("category", finder);
+    			//.getAll();
         request.setAttribute("listDoctypes", items);
         
         RequestDispatcher dispatcher = request.getRequestDispatcher("/doctype.jsp");
@@ -73,8 +84,9 @@ public class DocumentTypeController extends BaseController {
     	
     	String title = request.getParameter("title");
         String description = request.getParameter("description");
+        String category = request.getParameter("category");
 
-        DocumentType entity = new DocumentType( title, description );
+        DocumentType entity = new DocumentType( title, description, category );
         repository.save( entity );
         
         response.sendRedirect("/doctype");
@@ -86,6 +98,7 @@ public class DocumentTypeController extends BaseController {
         int id = Integer.parseInt(request.getParameter("id"));
         String title = request.getParameter("title");
         String description = request.getParameter("description");
+        String category = request.getParameter("category");
         
         DocumentType entity = repository.get(id);
         if( entity == null ) {
@@ -94,6 +107,7 @@ public class DocumentTypeController extends BaseController {
         
         entity.setTitle(title);
         entity.setDescription(description);
+        entity.setCategory(category);
         repository.update( entity );
         response.sendRedirect("/doctype");
     }

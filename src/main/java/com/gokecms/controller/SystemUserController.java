@@ -2,6 +2,7 @@ package com.gokecms.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -11,6 +12,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.EnumUtils;
+
+import com.gokecms.app.Categories;
+import com.gokecms.app.CategoryName;
+import com.gokecms.app.RoleName;
+import com.gokecms.app.Roles;
 import com.gokecms.model.SystemUser;
 import com.gokecms.repository.SystemUserRepository;
 
@@ -61,36 +68,36 @@ public class SystemUserController extends BaseController {
     private void listUser(HttpServletRequest request, HttpServletResponse response)
     		throws SQLException, IOException, ServletException {
         List < SystemUser > listUser = repository.getAll();
+        List<RoleName> roles = Arrays.asList( Roles.items );
+        
         request.setAttribute("listUser", listUser);
+        request.setAttribute("roles", roles);
+        
         RequestDispatcher dispatcher = request.getRequestDispatcher("user-list.jsp");
         dispatcher.forward(request, response);
     }
 
-    private void showNewForm(HttpServletRequest request, HttpServletResponse response)
-    		throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/user-form.jsp");
-        dispatcher.forward(request, response);
-    }
-
-    private void showEditForm(HttpServletRequest request, HttpServletResponse response)
-    		throws SQLException, ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        SystemUser existingUser = repository.get(id);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/user-form.jsp");
-        request.setAttribute("user", existingUser);
-        dispatcher.forward(request, response);
-
-    }
-
     private void insertUser(HttpServletRequest request, HttpServletResponse response) 
-    		throws SQLException, IOException {
+    		throws SQLException, IOException, ServletException {
     	String name = request.getParameter("name");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String role = request.getParameter("role");
         boolean blocked = request.getParameter("block") == null ? false : true;
-        boolean isSuper = request.getParameter("is_super") == null ? false : true;
+        
+        if(!EnumUtils.isValidEnum(RoleName.class, role)){
+        	RequestDispatcher dispatcher = request.getRequestDispatcher("/user-list.jsp");
+            request.setAttribute("error", "Role is not valid");
+            dispatcher.forward(request, response);
+        }
 
-        SystemUser newUser = new SystemUser( name, email, password, blocked, isSuper );
+        boolean isSuper = RoleName.SUPER_ADMIN.equals( RoleName.valueOf(role) );
+        boolean isBusinessUnit = RoleName.BUSINESS_UNIT.equals( RoleName.valueOf(role) );
+        boolean isHr = RoleName.HR.equals( RoleName.valueOf(role) );
+        boolean isAdmin = RoleName.ADMIN.equals( RoleName.valueOf(role) );
+        boolean isFinance = RoleName.FINANCE.equals( RoleName.valueOf(role) );
+
+        SystemUser newUser = new SystemUser( name, email, password, blocked, isSuper, isBusinessUnit, isAdmin, isHr, isFinance );
         newUser.setCreatedAt(new Date());
         
         repository.saveUser(newUser);
@@ -98,15 +105,26 @@ public class SystemUserController extends BaseController {
     }
 
     private void updateUser(HttpServletRequest request, HttpServletResponse response) 
-    		throws SQLException, IOException {
+    		throws SQLException, IOException, ServletException {
         int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String role = request.getParameter("role");
         boolean blocked = request.getParameter("block") == null ? false : true;
-        boolean isSuper = request.getParameter("is_super") == null ? false : true;
+        
+        if(!EnumUtils.isValidEnum(RoleName.class, role)){
+        	RequestDispatcher dispatcher = request.getRequestDispatcher("/user-list.jsp");
+            request.setAttribute("error", "Role is not valid");
+            dispatcher.forward(request, response);
+        }
 
-        System.out.println("Password: " + password);
+        boolean isSuper = RoleName.SUPER_ADMIN.equals( RoleName.valueOf(role) );
+        boolean isBusinessUnit = RoleName.BUSINESS_UNIT.equals( RoleName.valueOf(role) );
+        boolean isHr = RoleName.HR.equals( RoleName.valueOf(role) );
+        boolean isAdmin = RoleName.ADMIN.equals( RoleName.valueOf(role) );
+        boolean isFinance = RoleName.FINANCE.equals( RoleName.valueOf(role) );
+        
         SystemUser user = repository.get(id);
         if(user != null) {
         	user.setName(name);
@@ -116,6 +134,10 @@ public class SystemUserController extends BaseController {
         	}
         	user.setBlocked(blocked);
         	user.setSuperAdmin(isSuper);
+        	user.setBusinessUnit(isBusinessUnit);
+        	user.setAdmin(isAdmin);
+        	user.setHr(isHr);
+        	user.setFinance(isFinance);
         	
         	repository.update(user);
         }

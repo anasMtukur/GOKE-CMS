@@ -29,7 +29,10 @@ public class DocumentType {
     @Column(name="description")
     protected String description;
     
-    @Column(name="created_at")
+    @Column(name="category")
+    protected String category;
+
+	@Column(name="created_at")
     @Basic
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
@@ -43,15 +46,17 @@ public class DocumentType {
     
     public DocumentType() {}
     
-    public DocumentType(String title, String description) {
+    public DocumentType(String title, String description, String category) {
     	this.title = title;
     	this.description = description;
+    	this.category = category;
     }
     
-    public DocumentType(int id, String title, String description) {
+    public DocumentType(int id, String title, String description, String category) {
     	this.id = id;
     	this.title = title;
     	this.description = description;
+    	this.category = category;
     }
 
 	public int getId() {
@@ -76,6 +81,14 @@ public class DocumentType {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public Date getCreatedAt() {

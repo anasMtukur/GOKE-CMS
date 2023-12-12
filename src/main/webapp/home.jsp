@@ -31,43 +31,57 @@
 	                </div>
 	            </section>
 	            <!-- END WELCOME-->
-            
-				<!-- STATISTIC-->
-	            <section class="statistic statistic2 m-t-30 section__content--p30">
-	                <div class="container-fluid">
-	                    <div class="row">
-	                        <div class="col-md-12 col-lg-4">
-	                            <a href="/client?q=STAFF" class="w-100 statistic__item statistic__item--green">
-	                                <h2 class="number"><c:out value='${counters.STAFF}' /></h2>
-	                                <span class="desc">STAFF</span>
-	                                <div class="icon">
-	                                    <i class="zmdi zmdi-account-o"></i>
-	                                </div>
-	                            </a>
-	                        </div>
-	                        <div class="col-md-12 col-lg-4">
-	                            <a href="/client?q=MERCHANT" class="w-100 statistic__item statistic__item--orange">
-	                                <h2 class="number"><c:out value='${counters.MERCHANT}' /></h2>
-	                                <span class="desc">MERCHANTS</span>
-	                                <div class="icon">
-	                                    <i class="zmdi zmdi-shopping-cart"></i>
-	                                </div>
-	                            </a>
-	                        </div>
-	                        <div class="col-md-12 col-lg-4">
-	                            <a href="/client?q=AGENT" class="w-100 statistic__item statistic__item--blue">
-	                                <h2 class="number"><c:out value='${counters.AGENT}' /></h2>
-	                                <span class="desc">AGENTS</span>
-	                                <div class="icon">
-	                                    <i class="zmdi zmdi-calendar-note"></i>
-	                                </div>
-	                            </a>
-	                        </div>
-	                        
-	                    </div>
-	                </div>
-	            </section>
-	            <!-- END STATISTIC-->
+	            
+	            <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="au-card au-card--no-shadow au-card--no-pad m-b-40">
+                                    <div class="au-card-title" style="background-image:url('images/bg-title-01.jpg');">
+                                        <div class="bg-overlay bg-overlay--blue"></div>
+                                        <h3>
+                                            <i class="zmdi zmdi-account-calendar"></i>
+                                        	Client Categories    
+                                        </h3>
+                                    </div>
+                                    <div class="au-task">
+                                        <div class="au-task__title">
+                                            <p>System KYC Categories</p>
+                                        </div>
+                                        <div class="au-task-list" style="height: auto;">
+                                            <c:forEach var="item" items="${counters}">
+                                            <div class="au-task__item au-task__item--primary">
+                                           		<div class="au-task__item-inner d-flex justify-content-between">
+                                                    <h5 class="task" style="width: 20%;">
+                                                        ${item.category}
+                                                    </h5>
+                                                    <span class="time">${item.count}</span>
+                                                    <c:if test='${authUser.superAdmin || 
+                                                    	( item.category == "ADMIN" && authUser.admin ) || 
+                                                    	( item.category == "STAFF" && authUser.hr ) || 
+                                                    	( item.category == "MERCHANT" || item.category == "AGENT" && authUser.businessUnit ) || 
+                                                    	( item.category == "FINANCE" && authUser.finance )}'>
+                                                    <div>
+	                                                    <a href="/client?q=<c:out value='${item.category}' />" title="Clients" class="au-btn-round">
+	                                            			<i class="fas fa-user"></i>
+	                                        			</a>
+	                                        			<a href="/doctype?q=<c:out value='${item.category}' />" title="Document Types" class="au-btn-round">
+	                                            			<i class="fa fa-files-o"></i>
+	                                        			</a>
+                                        			</div>
+                                        			</c:if>
+                                                </div>
+                                            </div>
+                                            </c:forEach>
+                                        </div>
+                                        <div class="au-task__footer"></div>
+                                    </div>
+                                </div>
+                            </div>
+            			</div>
+                    </div>
+                </div>
+				
 			</div>
 		</div>
 		<!-- END PAGE CONTAINER-->

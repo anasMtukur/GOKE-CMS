@@ -80,8 +80,17 @@
                                                     	<c:if test="${user.superAdmin}">
                                                         	<span class="role admin">Super User</span> 
                                                         </c:if>
-                                                        <c:if test="${!user.superAdmin}"> 
-                                                        	<span class="role member">Limited User</span>  
+                                                        <c:if test="${user.businessUnit}"> 
+                                                        	<span class="role member">Business Unit</span>  
+                                                        </c:if>
+                                                        <c:if test="${user.hr}"> 
+                                                        	<span class="role member">HR</span>  
+                                                        </c:if>
+                                                        <c:if test="${user.admin}"> 
+                                                        	<span class="role member">Admin</span>  
+                                                        </c:if>
+                                                        <c:if test="${user.finance}"> 
+                                                        	<span class="role member">Finance</span>  
                                                         </c:if>
                                                     </td>
                                                     <c:if test="${authUser.superAdmin}">
@@ -90,11 +99,15 @@
                                                         	<button class="item" 
                                                         		data-toggle="modal" 
                                                         		data-target="#editModal"
-                                                        		data-id='<c:out value="${user.id}" />'
-                                                        		data-name='<c:out value="${user.name}" />'
-                                                        		data-email='<c:out value="${user.username}" />'
-                                                        		data-super='<c:out value="${user.superAdmin}" />'
-                                                        		data-blocked='<c:out value="${user.blocked}" />'
+                                                        		data-id='${user.id}'
+                                                        		data-name='${user.name}'
+                                                        		data-email='${user.username}'
+                                                        		data-super='${user.superAdmin}'
+                                                        		data-business='${user.businessUnit}'
+                                                        		data-admin='${user.admin}'
+                                                        		data-hr='${user.hr}'
+                                                        		data-finance='${user.finance}'
+                                                        		data-blocked='${user.blocked}'
                                                         		title="Edit">
 	                                                            <i class="zmdi zmdi-edit text-primary"></i>
 	                                                        </button>
@@ -174,10 +187,20 @@
 	                                 <small>Use a strong password and keep it safe. You wont be able to view this password again.</small>
 	                             </div>
 	                         </div>
-	                         <div class="form-group">
-		                        <label>
-		                            <input type="checkbox" value="true" name="is_super"> Allow Super User Access
-		                        </label>
+	                         <div class="row form-group">
+	                         	<div class="col-12">
+	                         		<label class="form-control-label">User Role</label>
+	                         	</div>
+	                         	<div class="col">
+		                         	<div class="form-check-inline form-check">
+		                         		<c:forEach var="role" items="${roles}" varStatus="loop">
+	                                    <label for="inline-radio${loop.index}" class="form-check-label mr-4">
+	                                        <input type="radio" name="role" id="inline-radio${loop.index}" value="${role}" class="form-check-input"> ${role}
+	                                    </label>
+	                                    </c:forEach>
+	                                </div>
+                                </div>
+		                        
 	                    	 </div>
 						</div>
 						<div class="modal-footer">
@@ -222,10 +245,19 @@
 	                                 <small>Use a strong password and keep it safe. You wont be able to view this password again.</small>
 	                             </div>
 	                         </div>
-	                         <div class="form-group">
-		                        <label>
-		                            <input type="checkbox" value="true" name="is_super" id="is_super"> Allow Super User Access
-		                        </label>
+	                         <div class="row form-group">
+	                         	<div class="col-12">
+	                         		<label class="form-control-label">User Role</label>
+	                         	</div>
+	                         	<div class="col">
+		                         	<div class="form-check-inline form-check">
+		                         		<c:forEach var="role" items="${roles}" varStatus="loop">
+	                                    <label for="inline-radio${loop.index}" class="form-check-label mr-4">
+	                                        <input type="radio" name="role" id="edit-role-${loop.index}" value="${role}" class="form-check-input"> ${role}
+	                                    </label>
+	                                    </c:forEach>
+	                                </div>
+                                </div>
 	                    	 </div>
 						</div>
 						<div class="modal-footer">
@@ -248,7 +280,11 @@
 		  	$('#id').val( button.data('id') )
 		  	$('#name').val( button.data('name') )
 		  	$('#email').val( button.data('email') )
-		  	$('#is_super').prop( "checked", button.data('super') );
+		  	$('#edit-role-0').prop( "checked", button.data('super') );
+		  	$('#edit-role-1').prop( "checked", button.data('business') );
+		  	$('#edit-role-2').prop( "checked", button.data('hr') );
+		  	$('#edit-role-3').prop( "checked", button.data('admin') );
+		  	$('#edit-role-4').prop( "checked", button.data('finance') );
 		})
 	</script>
 

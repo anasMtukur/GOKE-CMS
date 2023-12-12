@@ -45,6 +45,22 @@ public class SystemUser {
     @Convert(converter = NumericBooleanConverter.class)
     protected boolean isSuperAdmin;
     
+    @Column(name="is_business_unit")
+    @Convert(converter = NumericBooleanConverter.class)
+    protected boolean isBusinessUnit;
+    
+    @Column(name="is_admin")
+    @Convert(converter = NumericBooleanConverter.class)
+    protected boolean isAdmin;
+    
+    @Column(name="is_hr")
+    @Convert(converter = NumericBooleanConverter.class)
+    protected boolean isHr;
+    
+    @Column(name="is_finance")
+    @Convert(converter = NumericBooleanConverter.class)
+    protected boolean isFinance;
+    
     @Column(name="created_at")
     @Basic
     @Temporal(TemporalType.TIMESTAMP)
@@ -60,21 +76,31 @@ public class SystemUser {
     public SystemUser() {
     }
  
-    public SystemUser(String name, String username, String password, boolean isBlocked, boolean isSuperAdmin) {
+    public SystemUser(String name, String username, String password, boolean isBlocked, boolean isSuperAdmin, boolean isBusinessUnit, boolean isAdmin, boolean isHr, boolean isFinance) {
         super();
         this.name = name;
         this.username = username;
         this.password = password;
         this.isBlocked = isBlocked;
+        this.isSuperAdmin = isSuperAdmin;
+        this.isBusinessUnit = isBusinessUnit;
+        this.isAdmin = isAdmin;
+        this.isHr = isHr;
+        this.isFinance = isFinance;
     }
 
-    public SystemUser(int id, String name, String username, String password, boolean isBlocked, boolean isSuperAdmin) {
+    public SystemUser(int id, String name, String username, String password, boolean isBlocked, boolean isSuperAdmin, boolean isBusinessUnit, boolean isAdmin, boolean isHr, boolean isFinance) {
         super();
         this.id = id;
         this.name = name;
         this.username = username;
         this.password = password;
         this.isBlocked = isBlocked;
+        this.isSuperAdmin = isSuperAdmin;
+        this.isBusinessUnit = isBusinessUnit;
+        this.isAdmin = isAdmin;
+        this.isHr = isHr;
+        this.isFinance = isFinance;
     }
 
 	public int getId() {
@@ -123,6 +149,38 @@ public class SystemUser {
 
 	public void setSuperAdmin(boolean isSuperAdmin) {
 		this.isSuperAdmin = isSuperAdmin;
+	}
+
+	public boolean isBusinessUnit() {
+		return isBusinessUnit;
+	}
+
+	public void setBusinessUnit(boolean isBusinessUnit) {
+		this.isBusinessUnit = isBusinessUnit;
+	}
+
+	public boolean isAdmin() {
+		return isAdmin;
+	}
+
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
+	public boolean isHr() {
+		return isHr;
+	}
+
+	public void setHr(boolean isHr) {
+		this.isHr = isHr;
+	}
+
+	public boolean isFinance() {
+		return isFinance;
+	}
+
+	public void setFinance(boolean isFinance) {
+		this.isFinance = isFinance;
 	}
 
 	public Date getCreatedAt() {

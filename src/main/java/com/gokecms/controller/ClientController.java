@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.gokecms.app.Categories;
+import com.gokecms.app.CategoryName;
 import com.gokecms.model.Client;
 import com.gokecms.model.ClientFile;
 import com.gokecms.model.SystemUser;
@@ -79,7 +80,7 @@ public class ClientController extends BaseController {
     
     private void listClients(HttpServletRequest request, HttpServletResponse response)
     		throws SQLException, IOException, ServletException {
-    	List<String> categories = Arrays.asList( Categories.items );
+    	List<CategoryName> categories = Arrays.asList( Categories.items );
     	request.setAttribute("category", finder);
     	request.setAttribute("categories", categories);
     	

@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -18,6 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.gokecms.app.Categories;
+import com.gokecms.app.CategoryName;
+import com.gokecms.model.CategoryCounter;
 import com.gokecms.model.Client;
 import com.gokecms.model.ClientFile;
 import com.gokecms.model.SystemUser;
@@ -45,12 +48,12 @@ public class HomeController extends BaseController {
     		throws ServletException, IOException {
     	
     	if( isAuthenticated(request, response) ) {
-    		List<String> categories = Arrays.asList( Categories.items );
-    		HashMap<String, Long> counters = new HashMap<String, Long>();
+    		List<CategoryName> categories = Arrays.asList( Categories.items );
+    		List<CategoryCounter> counters = new ArrayList<>();
     		
-    		for(String category: categories){
-    			long count = repository.countBy("category", category);
-    			counters.put(category, count);
+    		for(CategoryName category: categories){
+    			long count = repository.countBy("category", category.name());
+    			counters.add( new CategoryCounter(category, count) );
     		}
     		
     		request.setAttribute("categories", categories);

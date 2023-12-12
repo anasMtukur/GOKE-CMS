@@ -33,11 +33,11 @@
                                         </button>
                                     </div>
                                     <div class="au-inbox-wrap js-inbox-wrap">
-                                        <div class="au-message js-list-load">
+                                        <div class="au-message" >
                                             <div class="au-message__noti">
                                                 <p>Client Number: <c:out value="${clientInfo.number}" /></p>
                                             </div>
-                                            <div class="au-message-list">
+                                            <div class="au-message-list" style="height: auto;">
                                             
                                             	<c:forEach var="file" items="${listClientFiles}">
                                                 <div class="au-message__item-noclick">
@@ -93,6 +93,12 @@
                                                 	<i class="zmdi zmdi-download"></i>
                                                 	Download All
                                                 </a>
+                                                <c:if test="${authUser.superAdmin}">
+                                                <a href="download" class="au-btn au-btn-icon au-btn--green">
+                                                	<i class="fa fa-envelope"></i>
+                                                	Mail All
+                                                </a>
+                                                </c:if>
                                             </div>
                                     	</div>
                                     </div>

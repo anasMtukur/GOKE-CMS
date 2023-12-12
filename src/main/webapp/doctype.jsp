@@ -25,22 +25,22 @@
                                     <div class="au-card-title" style="background-image:url('images/bg-title-01.jpg');">
                                         <div class="bg-overlay bg-overlay--blue"></div>
                                         <h3>
-                                            <i class="zmdi zmdi-account-calendar"></i>Document Types</h3>
+                                            <i class="zmdi zmdi-account-calendar"></i>Document Types - <c:out value="${category}" /></h3>
                                         <button class="au-btn-plus" data-toggle="modal" data-target="#mediumModal">
                                             <i class="zmdi zmdi-plus"></i>
                                         </button>
                                     </div>
                                     <div class="au-inbox-wrap js-inbox-wrap">
-                                        <div class="au-message js-list-load">
+                                        <div class="au-message">
                                             <div class="au-message__noti">
                                                 <p>
-                                                	Total Clients: 
+                                                	Total Document Types: 
                                                     <strong>
                                                     	<c:out value="${listDoctypes.size()}" />
                                                     </strong>
                                                 </p>
                                             </div>
-                                            <div class="au-message-list">
+                                            <div class="au-message-list" style="height: auto;">
                                             
                                             	<c:forEach var="client" items="${listDoctypes}">
                                                 <div class="au-message__item-noclick">
@@ -105,6 +105,8 @@
 					</button>
 				</div>
 				<form action="/doctype/add" method="post">
+					<input class="au-input au-input--full" type="hidden" name="q" value='<c:out value="${category}" />'>
+					<input class="au-input au-input--full" type="hidden" name="category" value='<c:out value="${category}" />'>
 					<div class="modal-body">
 						<div class="form-group">
                             <label>Document Type Title</label>
@@ -136,6 +138,8 @@
 					</button>
 				</div>
 				<form action="/doctype/update" method="post">
+					<input class="au-input au-input--full" type="hidden" name="q" value='<c:out value="${category}" />'>
+					<input class="au-input au-input--full" type="hidden" name="category" value='<c:out value="${category}" />'>
 					<div class="modal-body">
 						<div class="form-group">
                             <label>Client ID</label>
@@ -156,6 +160,7 @@
 				<c:if test="${authUser.superAdmin}">
 				<div class="modal-footer">
 					<form action="/doctype/delete" method="post">
+						<input class="au-input au-input--full" type="hidden" name="q" value='<c:out value="${category}" />'>
 						<input class="au-input au-input--full" type="hidden" name="id" id="c_id" required readonly />
 						<button type="submit" class="btn btn-danger">Delete</button>
 					</form>
